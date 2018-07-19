@@ -12,10 +12,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if (localStorage.getItem('userToken') != null) {
+        if (sessionStorage.getItem('userToken') != null) {
           //console.log("itt");
             const clonedreq = req.clone({
-                headers: req.headers.set("Authorization", "Bearer " + localStorage.getItem('userToken'))
+                headers: req.headers.set("Authorization", "Bearer " + sessionStorage.getItem('userToken'))
             });
             return next.handle(clonedreq)
                 .do(
