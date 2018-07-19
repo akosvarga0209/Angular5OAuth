@@ -1,0 +1,27 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">
+      <i class="material-icons">cloud</i>OAuth2 App With SpringSecurity</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a (click)="Logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="row" *ngIf="userClaims">
+  <div class="col s12 m7">
+    <div class="card">
+      <div class="card-content" *ngFor="let item of userClaims; let i = index">
+        <span>Username :{{item.username}}</span>
+        <br>
+        <span>Salary : {{item.salary}}</span>
+        <br>
+        <span>Age : {{item.age}} {{userClaims.LastName}}</span>
+        <br>
+        <span>Roles:</span>
+        <span *ngFor="let role of item.roles; let i = index">{{role.name}}" "</span>
+      </div>
+    </div>
+  </div>
+</div>
