@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr'
 import { User } from '../../shared/user.model';
 import { UserService } from '../../shared/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,9 +12,8 @@ import { UserService } from '../../shared/user.service';
 })
 export class SignUpComponent implements OnInit {
   user: User;
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  constructor(private userService: UserService, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.resetForm();
@@ -23,11 +23,8 @@ export class SignUpComponent implements OnInit {
     if (form != null)
       form.reset();
     this.user = {
-      UserName: '',
-      Password: '',
-      Email: '',
-      FirstName: '',
-      LastName: ''
+      username: '',
+      password: '',
     }
   }
 
@@ -41,6 +38,7 @@ export class SignUpComponent implements OnInit {
         else
           this.toastr.error(data.Errors[0]);
       });
+    this.router.navigate(['/home']);
   }
 
 }

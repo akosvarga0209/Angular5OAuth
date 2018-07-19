@@ -12,14 +12,11 @@ export class UserService {
 
   registerUser(user: User) {
     const body: User = {
-      UserName: user.UserName,
-      Password: user.Password,
-      Email: user.Email,
-      FirstName: user.FirstName,
-      LastName: user.LastName
+      username: user.username,
+      password: user.password,
     }
-    var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.http.post(this.rootUrl + '/oauth/token', body,{headers : reqHeader});
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Basic ZGV2Z2xhbi1jbGllbnQ6cGFzc3dvcmQ=' });
+    return this.http.post(this.rootUrl + '/register', body,{headers : reqHeader});
   }
 
   userAuthentication(userName, password) {
